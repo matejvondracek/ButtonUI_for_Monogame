@@ -19,14 +19,16 @@ namespace ButtonUI
             min = _min;
             max = _max;
             value = (min + max) / 2;
-            difference = (max - min) / steps;
+            difference = (max - min) / (steps - 1);
             texture = _textures[2];
             textures = _textures;
-
+            float buttonWidth = rect.Width / steps;
+            
             for (int i = 0; i < steps; i++)
             {
-                buttons.Add(new ToggleButton(new Rectangle(rect.X + rect.Width / steps * i, rect.Y, rect.Width / steps, rect.Height), textures, false));
+                buttons.Add(new ToggleButton(new Rectangle(rect.X + (int)(buttonWidth * i), rect.Y, (int)buttonWidth, rect.Height), textures, false));
             }
+            buttons[steps / 2].on = true;
         }
 
         #region cycle
@@ -45,7 +47,8 @@ namespace ButtonUI
                             button.on = false;
                         }
                     }
-                }
+                }               
+
                 if (buttons[i].on)
                 {
                     buttons[i].button.texture = textures[1];

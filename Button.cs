@@ -10,7 +10,7 @@ namespace ButtonUI
         readonly Texture2D[] textures;
         public Texture2D texture;
         MouseState mouse;
-        Label label;
+        public Label label;
 
         bool released = false;
 

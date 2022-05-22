@@ -11,6 +11,7 @@ namespace ButtonUI
     {
         public Rectangle rect;
         public bool enabled = true, visible = true;
+        public string tag = "";
 
         public UIObject(Rectangle _rect)
         {

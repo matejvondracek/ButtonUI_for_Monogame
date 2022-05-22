@@ -29,14 +29,26 @@ namespace ButtonUI
         public override void Update(MouseState mouse, KeyboardState keyboard)
         {
             button.Update(mouse);
-            if (button.IsPressed()) selected = true;
-            else if ((mouse.LeftButton == ButtonState.Pressed) && (!button.IsTargeted())) selected = false;
-            if (selected) HandleInput(keyboard);
+            if (button.IsPressed())
+            {
+                selected = true;
+            }
+            else if ((mouse.LeftButton == ButtonState.Pressed) && (!button.IsTargeted()))
+            {
+                selected = false;
+            }
+
+            if (selected)
+            {
+                HandleInput(keyboard);
+            }
+
+            button.AddText(text, font, bezels, textColor);
         }
 
-        public override void Draw(SpriteBatch sprite)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            button.Draw(sprite);
+            button.Draw(spriteBatch);
         }
         #endregion
 
@@ -91,7 +103,6 @@ namespace ButtonUI
             {
                 released = true;
             }
-            button.AddText(text, font, bezels, textColor);
         }
     }
 }

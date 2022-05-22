@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,9 +16,20 @@ namespace ButtonUI
 
         }
 
-        public void Add(UIObject _object)
+        public void Add(UIObject obj)
         {
-            objects.Add(_object);
+            objects.Add(obj);
+        }
+
+        public void Add(UIObject obj, string tag)
+        {
+            obj.tag = tag;
+            objects.Add(obj);
+        }
+
+        public T GetObject<T>(string tag) where T: UIObject
+        {
+            return objects.OfType<T>().FirstOrDefault(obj => obj.tag == tag);
         }
 
         #region cycle
@@ -56,5 +67,7 @@ namespace ButtonUI
             }
         }
         #endregion
+
+        
     }
 }
