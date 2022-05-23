@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ButtonUI
 {
+    /// <summary>
+    /// An UIobject for choosing int value using mouse.
+    /// </summary>
     public class Slider : UIObject
     {
         readonly List<ToggleButton> buttons = new List<ToggleButton>();
@@ -14,6 +17,14 @@ namespace ButtonUI
         readonly Texture2D texture;
         readonly Texture2D[] textures = new Texture2D[3];
 
+        /// <summary>
+        /// Generates Slider in given Rectangle _rect. It's values are between int _min and int _max, devided into int steps.
+        /// </summary>
+        /// <param name="_rect"></param>
+        /// <param name="_min"></param>
+        /// <param name="_max"></param>
+        /// <param name="steps"></param>
+        /// <param name="_textures"></param>
         public Slider(Rectangle _rect, int _min, int _max, int steps, Texture2D[] _textures) : base(_rect)
         {
             min = _min;
@@ -32,6 +43,11 @@ namespace ButtonUI
         }
 
         #region cycle
+        /// <summary>
+        /// Updates Slider
+        /// </summary>
+        /// <param name="mouse"></param>
+        /// <param name="keyboard"></param>
         public override void Update(MouseState mouse, KeyboardState keyboard)
         {
             for (int i = 0; i < buttons.Count; i++)
@@ -56,6 +72,10 @@ namespace ButtonUI
             }
         }
 
+        /// <summary>
+        /// Draws Slider. Must be called only between spriteBatch.Begin() and spriteBatch.End().
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             //design for whole slider

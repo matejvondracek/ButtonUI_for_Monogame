@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ButtonUI
 {
+    /// <summary>
+    /// Basically an ON/OFF switch. 
+    /// </summary>
     public class ToggleButton : UIObject
     {
         public readonly Button button;
@@ -34,11 +37,20 @@ namespace ButtonUI
         }
 
         #region cycle
+        /// <summary>
+        /// Updates ToggleButton. KeybordState is not needed, this method is used in foreach cycles with another UIObjects.
+        /// </summary>
+        /// <param name="mouse"></param>
+        /// <param name="keyboard"></param>
         public override void Update(MouseState mouse, KeyboardState keyboard)
         {
             Update(mouse);
         }
 
+        /// <summary>
+        /// Updates ToggleButton.
+        /// </summary>
+        /// <param name="mouse"></param>
         public void Update(MouseState mouse)
         {
             button.Update(mouse);
@@ -58,6 +70,10 @@ namespace ButtonUI
             }
         }
 
+        /// <summary>
+        /// Draws ToggleButton. Must be called only between spriteBatch.Begin() and spriteBatch.End().
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             button.Draw(spriteBatch);

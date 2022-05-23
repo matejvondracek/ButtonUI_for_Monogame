@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ButtonUI
 {
+    /// <summary>
+    /// An UIObject for choosing int values using arrows.
+    /// </summary>
     public class ValueBox : UIObject
     {
         readonly Button displayButton, upButton, downButton;
@@ -15,6 +18,17 @@ namespace ButtonUI
         readonly Texture2D[] textures;
         Color textColor;
 
+        /// <summary>
+        /// Generates ValueBox into given Rectangle _rect. The size of arrows and display vary based on float ratio = arrowWidth / displayWidth. 
+        /// </summary>
+        /// <param name="_rect"></param>
+        /// <param name="ratio"></param>
+        /// <param name="_bezel"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="spriteFont"></param>
+        /// <param name="_color"></param>
+        /// <param name="_textures"></param>
         public ValueBox(Rectangle _rect, float ratio, int _bezel, int min, int max, SpriteFont spriteFont, Color _color, Texture2D[] _textures) 
             : base (_rect)
         {
@@ -39,11 +53,20 @@ namespace ButtonUI
         }
 
         #region cycle
+        /// <summary>
+        /// Updates ValueBox. KeybordState is not needed, this method is used in foreach cycles with another UIObjects.
+        /// </summary>
+        /// <param name="mouse"></param>
+        /// <param name="keyboard"></param>
         public override void Update(MouseState mouse, KeyboardState keyboard)
         {
             Update(mouse);
         }
 
+        /// <summary>
+        /// Updates ValueBox.
+        /// </summary>
+        /// <param name="mouse"></param>
         public void Update(MouseState mouse)
         {
             upButton.Update(mouse);
@@ -59,6 +82,10 @@ namespace ButtonUI
             displayButton.AddText(value.ToString(), font, bezel, textColor);
         }
 
+        /// <summary>
+        /// Draws ValueBox. Must be called only between spriteBatch.Begin() and spriteBatch.End().
+        /// </summary>
+        /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
             displayButton.Draw(spriteBatch);
@@ -66,18 +93,5 @@ namespace ButtonUI
             downButton.Draw(spriteBatch);
         }
         #endregion
-
-        public void SetValue(int newValue)
-        {
-            if ((newValue <= maxValue) && (newValue >= minValue))
-            {
-                value = newValue;
-            }
-        }
-
-        public int GetValue()
-        {
-            return value;
-        }
     }
 }

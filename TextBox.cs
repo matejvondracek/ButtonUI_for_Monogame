@@ -7,6 +7,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ButtonUI
 {
+    /// <summary>
+    /// An UIObject in which user can type text. Supports only the most basic keys.
+    /// </summary>
     public class TextBox : UIObject
     {
         protected Button button;

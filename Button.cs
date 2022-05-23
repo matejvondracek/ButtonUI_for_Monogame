@@ -5,6 +5,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace ButtonUI
 {
+    /// <summary>
+    /// UIObject the user can click on. It renders texture and can display text as well. Is used in almost all other UIObjects.
+    /// </summary>
     public class Button : UIObject
     {
         readonly Texture2D[] textures;
